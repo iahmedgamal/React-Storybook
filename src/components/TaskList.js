@@ -44,9 +44,15 @@ function TaskList({ loading, tasks, onPinTask, onArchiveTask }) {
       </div>
     );
   }
+
+  const tasksInOrder = [
+    ...tasks.filter(t => t.state === 'TASK_PINNED'),
+    ...tasks.filter(t => t.state !== 'TASK_PINNED')
+  ];
+
   return (
     <div>
-      {tasks.map(task => (
+      {tasksInOrder.map(task => (
         <Task key={task.id} task={task} {...events} />
       ))}
     </div>
